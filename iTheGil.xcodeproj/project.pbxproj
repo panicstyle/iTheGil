@@ -1,0 +1,381 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECA0EC351E626D3D0078D944 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC341E626D3D0078D944 /* main.m */; };
+		ECA0EC381E626D3D0078D944 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC371E626D3D0078D944 /* AppDelegate.m */; };
+		ECA0EC3B1E626D3D0078D944 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC3A1E626D3D0078D944 /* MainView.m */; };
+		ECA0EC3E1E626D3D0078D944 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA0EC3C1E626D3D0078D944 /* Main.storyboard */; };
+		ECA0EC401E626D3D0078D944 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA0EC3F1E626D3D0078D944 /* Assets.xcassets */; };
+		ECA0EC431E626D3D0078D944 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECA0EC411E626D3D0078D944 /* LaunchScreen.storyboard */; };
+		ECA0EC4B1E62EAA80078D944 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA0EC4A1E62EAA80078D944 /* GoogleMobileAds.framework */; };
+		ECA0EC4E1E62EAFE0078D944 /* MainData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC4D1E62EAFE0078D944 /* MainData.m */; };
+		ECA0EC5A1E62EBBF0078D944 /* LoginToService.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC511E62EBBF0078D944 /* LoginToService.m */; };
+		ECA0EC5B1E62EBBF0078D944 /* SetInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC531E62EBBF0078D944 /* SetInfo.m */; };
+		ECA0EC5C1E62EBBF0078D944 /* SetInfoStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC551E62EBBF0078D944 /* SetInfoStorage.m */; };
+		ECA0EC5D1E62EBBF0078D944 /* SetStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC571E62EBBF0078D944 /* SetStorage.m */; };
+		ECA0EC5E1E62EBBF0078D944 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC591E62EBBF0078D944 /* Utils.m */; };
+		ECA0EC611E6301920078D944 /* SetView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC601E6301920078D944 /* SetView.m */; };
+		ECA0EC641E6301B70078D944 /* AboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC631E6301B70078D944 /* AboutView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ECA0EC301E626D3D0078D944 /* iTheGil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTheGil.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECA0EC341E626D3D0078D944 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ECA0EC361E626D3D0078D944 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		ECA0EC371E626D3D0078D944 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		ECA0EC391E626D3D0078D944 /* MainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
+		ECA0EC3A1E626D3D0078D944 /* MainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
+		ECA0EC3D1E626D3D0078D944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ECA0EC3F1E626D3D0078D944 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECA0EC421E626D3D0078D944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ECA0EC441E626D3D0078D944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECA0EC4A1E62EAA80078D944 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		ECA0EC4C1E62EAFE0078D944 /* MainData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainData.h; sourceTree = "<group>"; };
+		ECA0EC4D1E62EAFE0078D944 /* MainData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainData.m; sourceTree = "<group>"; };
+		ECA0EC4F1E62EBBF0078D944 /* env.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = env.h; sourceTree = "<group>"; };
+		ECA0EC501E62EBBF0078D944 /* LoginToService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginToService.h; sourceTree = "<group>"; };
+		ECA0EC511E62EBBF0078D944 /* LoginToService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginToService.m; sourceTree = "<group>"; };
+		ECA0EC521E62EBBF0078D944 /* SetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetInfo.h; sourceTree = "<group>"; };
+		ECA0EC531E62EBBF0078D944 /* SetInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetInfo.m; sourceTree = "<group>"; };
+		ECA0EC541E62EBBF0078D944 /* SetInfoStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetInfoStorage.h; sourceTree = "<group>"; };
+		ECA0EC551E62EBBF0078D944 /* SetInfoStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetInfoStorage.m; sourceTree = "<group>"; };
+		ECA0EC561E62EBBF0078D944 /* SetStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetStorage.h; sourceTree = "<group>"; };
+		ECA0EC571E62EBBF0078D944 /* SetStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetStorage.m; sourceTree = "<group>"; };
+		ECA0EC581E62EBBF0078D944 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		ECA0EC591E62EBBF0078D944 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		ECA0EC5F1E6301920078D944 /* SetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetView.h; sourceTree = "<group>"; };
+		ECA0EC601E6301920078D944 /* SetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetView.m; sourceTree = "<group>"; };
+		ECA0EC621E6301B70078D944 /* AboutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutView.h; sourceTree = "<group>"; };
+		ECA0EC631E6301B70078D944 /* AboutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECA0EC2D1E626D3D0078D944 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA0EC4B1E62EAA80078D944 /* GoogleMobileAds.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECA0EC271E626D3D0078D944 = {
+			isa = PBXGroup;
+			children = (
+				ECA0EC4A1E62EAA80078D944 /* GoogleMobileAds.framework */,
+				ECA0EC321E626D3D0078D944 /* iTheGil */,
+				ECA0EC311E626D3D0078D944 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECA0EC311E626D3D0078D944 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECA0EC301E626D3D0078D944 /* iTheGil.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECA0EC321E626D3D0078D944 /* iTheGil */ = {
+			isa = PBXGroup;
+			children = (
+				ECA0EC621E6301B70078D944 /* AboutView.h */,
+				ECA0EC631E6301B70078D944 /* AboutView.m */,
+				ECA0EC361E626D3D0078D944 /* AppDelegate.h */,
+				ECA0EC371E626D3D0078D944 /* AppDelegate.m */,
+				ECA0EC3F1E626D3D0078D944 /* Assets.xcassets */,
+				ECA0EC4F1E62EBBF0078D944 /* env.h */,
+				ECA0EC441E626D3D0078D944 /* Info.plist */,
+				ECA0EC411E626D3D0078D944 /* LaunchScreen.storyboard */,
+				ECA0EC501E62EBBF0078D944 /* LoginToService.h */,
+				ECA0EC511E62EBBF0078D944 /* LoginToService.m */,
+				ECA0EC3C1E626D3D0078D944 /* Main.storyboard */,
+				ECA0EC4C1E62EAFE0078D944 /* MainData.h */,
+				ECA0EC4D1E62EAFE0078D944 /* MainData.m */,
+				ECA0EC391E626D3D0078D944 /* MainView.h */,
+				ECA0EC3A1E626D3D0078D944 /* MainView.m */,
+				ECA0EC521E62EBBF0078D944 /* SetInfo.h */,
+				ECA0EC531E62EBBF0078D944 /* SetInfo.m */,
+				ECA0EC541E62EBBF0078D944 /* SetInfoStorage.h */,
+				ECA0EC551E62EBBF0078D944 /* SetInfoStorage.m */,
+				ECA0EC561E62EBBF0078D944 /* SetStorage.h */,
+				ECA0EC571E62EBBF0078D944 /* SetStorage.m */,
+				ECA0EC5F1E6301920078D944 /* SetView.h */,
+				ECA0EC601E6301920078D944 /* SetView.m */,
+				ECA0EC331E626D3D0078D944 /* Supporting Files */,
+				ECA0EC581E62EBBF0078D944 /* Utils.h */,
+				ECA0EC591E62EBBF0078D944 /* Utils.m */,
+			);
+			path = iTheGil;
+			sourceTree = "<group>";
+		};
+		ECA0EC331E626D3D0078D944 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ECA0EC341E626D3D0078D944 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ECA0EC2F1E626D3D0078D944 /* iTheGil */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECA0EC471E626D3D0078D944 /* Build configuration list for PBXNativeTarget "iTheGil" */;
+			buildPhases = (
+				ECA0EC2C1E626D3D0078D944 /* Sources */,
+				ECA0EC2D1E626D3D0078D944 /* Frameworks */,
+				ECA0EC2E1E626D3D0078D944 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iTheGil;
+			productName = iTheGil;
+			productReference = ECA0EC301E626D3D0078D944 /* iTheGil.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECA0EC281E626D3D0078D944 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "DY Kim";
+				TargetAttributes = {
+					ECA0EC2F1E626D3D0078D944 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 8PG9C7Q5V8;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = ECA0EC2B1E626D3D0078D944 /* Build configuration list for PBXProject "iTheGil" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ECA0EC271E626D3D0078D944;
+			productRefGroup = ECA0EC311E626D3D0078D944 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECA0EC2F1E626D3D0078D944 /* iTheGil */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECA0EC2E1E626D3D0078D944 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA0EC431E626D3D0078D944 /* LaunchScreen.storyboard in Resources */,
+				ECA0EC401E626D3D0078D944 /* Assets.xcassets in Resources */,
+				ECA0EC3E1E626D3D0078D944 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECA0EC2C1E626D3D0078D944 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA0EC5E1E62EBBF0078D944 /* Utils.m in Sources */,
+				ECA0EC5D1E62EBBF0078D944 /* SetStorage.m in Sources */,
+				ECA0EC4E1E62EAFE0078D944 /* MainData.m in Sources */,
+				ECA0EC5C1E62EBBF0078D944 /* SetInfoStorage.m in Sources */,
+				ECA0EC3B1E626D3D0078D944 /* MainView.m in Sources */,
+				ECA0EC5B1E62EBBF0078D944 /* SetInfo.m in Sources */,
+				ECA0EC5A1E62EBBF0078D944 /* LoginToService.m in Sources */,
+				ECA0EC381E626D3D0078D944 /* AppDelegate.m in Sources */,
+				ECA0EC351E626D3D0078D944 /* main.m in Sources */,
+				ECA0EC641E6301B70078D944 /* AboutView.m in Sources */,
+				ECA0EC611E6301920078D944 /* SetView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ECA0EC3C1E626D3D0078D944 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECA0EC3D1E626D3D0078D944 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ECA0EC411E626D3D0078D944 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECA0EC421E626D3D0078D944 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ECA0EC451E626D3D0078D944 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ECA0EC461E626D3D0078D944 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ECA0EC481E626D3D0078D944 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8PG9C7Q5V8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = iTheGil/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.panicstyle.thegil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ECA0EC491E626D3D0078D944 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8PG9C7Q5V8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = iTheGil/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.panicstyle.thegil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECA0EC2B1E626D3D0078D944 /* Build configuration list for PBXProject "iTheGil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECA0EC451E626D3D0078D944 /* Debug */,
+				ECA0EC461E626D3D0078D944 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECA0EC471E626D3D0078D944 /* Build configuration list for PBXNativeTarget "iTheGil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECA0EC481E626D3D0078D944 /* Debug */,
+				ECA0EC491E626D3D0078D944 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECA0EC281E626D3D0078D944 /* Project object */;
+}
