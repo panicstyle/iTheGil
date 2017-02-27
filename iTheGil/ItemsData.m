@@ -74,6 +74,8 @@
 		NSString *str2 = [tbody substringWithRange:matchRange];
 		currItem = [[NSMutableDictionary alloc] init];
 		
+		[currItem setValue:[NSNumber numberWithInt:0] forKey:@"isRe"];
+		
 		// find [공지]
 		if ([Utils numberOfMatches:str2 regex:@"class=\\\"bo_notice\\\""] > 0) {
 			[currItem setValue:[NSNumber numberWithInt:1] forKey:@"isNotice"];

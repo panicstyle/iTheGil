@@ -175,7 +175,7 @@
 				if (cell == nil) {
 					cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierItem];
 				}
-				cell.showsReorderControl = YES;
+//				cell.showsReorderControl = YES;
 				
 				UIImageView *imageNew = (UIImageView *)[cell viewWithTag:110];
 				if ([[item valueForKey:@"isNew"] intValue] == 0) {
@@ -234,7 +234,7 @@
 				if (cell == nil) {
 					cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierReItem];
 				}
-				cell.showsReorderControl = YES;
+//				cell.showsReorderControl = YES;
 				
 				UIImageView *imageNew = (UIImageView *)[cell viewWithTag:310];
 				if ([[item valueForKey:@"isNew"] intValue] == 0) {
