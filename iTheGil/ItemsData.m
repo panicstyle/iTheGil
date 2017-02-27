@@ -117,7 +117,33 @@
 		
 		[m_arrayItems addObject:currItem];
 	}
-	
+/*
+	NSMutableDictionary *currItem;
+	int i = 0;
+	for (i = 0; i < 2; i++) {
+		currItem = [[NSMutableDictionary alloc] init];
+		
+		[currItem setValue:[NSNumber numberWithInt:0] forKey:@"isRe"];
+		
+		[currItem setValue:[NSNumber numberWithInt:1] forKey:@"isNotice"];
+		
+		[currItem setValue:@"SUBJECT" forKey:@"subject"];
+		
+		[currItem setValue:@"1234" forKey:@"boardNo"];
+		
+		[currItem setValue:@"12" forKey:@"comment"];
+		
+		[currItem setValue:@"1" forKey:@"isNew"];
+		
+		[currItem setValue:@"NAME" forKey:@"name"];
+		
+		[currItem setValue:@"00-00" forKey:@"date"];
+		
+		[currItem setValue:@"1" forKey:@"hit"];
+		
+		[m_arrayItems addObject:currItem];
+	}
+*/
 	[target performSelector:selector withObject:[NSNumber numberWithInt:RESULT_OK] afterDelay:0];
 }
 

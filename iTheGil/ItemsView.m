@@ -74,7 +74,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	//////NSLog(@"count = %d", [arrayItems count]);
+	NSLog(@"count = %lu", (unsigned long)[m_arrayItems count]);
 	// 더보기를 표시하기 위하여 +1
 	if ([m_arrayItems count] > 0) {
 		return [m_arrayItems count] + 1;
@@ -374,36 +374,13 @@
 
 - (void)didFetchItems:(NSNumber *)result
 {
-	if ([result intValue] == RESULT_AUTH_FAIL) {
-		NSLog(@"already login : auth fail");
-		UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"권한오류"
-																	   message:@"게시판을 볼 권한이 없습니다."
-																preferredStyle:UIAlertControllerStyleAlert];
-		
-		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-															  handler:^(UIAlertAction * action) {}];
-		
-		[alert addAction:defaultAction];
-		[self presentViewController:alert animated:YES completion:nil];
-	} else if ([result intValue] == RESULT_LOGIN_FAIL) {
-		UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"로그인 오류"
-																	   message:@"로그인 정보가 없거나 잘못되었습니다. 설정에서 로그인정보를 입력하세요."
-																preferredStyle:UIAlertControllerStyleAlert];
-		
-		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-															  handler:^(UIAlertAction * action) {}];
-		
-		[alert addAction:defaultAction];
-		[self presentViewController:alert animated:YES completion:nil];
+	if (m_nPage == 1) {
+		m_nItemMode = m_itemsData.m_nItemMode;
+		m_arrayItems = m_itemsData.m_arrayItems;
 	} else {
-		if (m_nPage == 1) {
-			m_nItemMode = m_itemsData.m_nItemMode;
-			m_arrayItems = [NSMutableArray arrayWithArray:m_itemsData.m_arrayItems];
-		} else {
-			[m_arrayItems addObjectsFromArray:m_itemsData.m_arrayItems];
-		}
-		[self.tbView reloadData];
+		[m_arrayItems addObjectsFromArray:m_itemsData.m_arrayItems];
 	}
+	[self.tbView reloadData];
 }
 
 - (void)didWrite:(id)sender
