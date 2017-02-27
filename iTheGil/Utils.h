@@ -13,7 +13,7 @@
 + (int)numberOfMatches:(NSString *)content regex:(NSString *)strRegex;
 + (NSString *)findStringWith:(NSString *)content from:(NSString *)fromString to:(NSString *)toString;
 + (NSString *)findStringRegex:(NSString *)content regex:(NSString *)strRegex;
++ (NSString *)findStringRegex:(NSString *)content regex:(NSString *)strRegex index:(int)nIndex;
 + (NSString *)replaceStringRegex:(NSString *)content regex:(NSString *)strRegex replace:(NSString *)strReplace;
 + (NSString *)replaceStringHtmlTag:(NSString *)content;
-
 @end

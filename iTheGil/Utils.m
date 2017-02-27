@@ -64,6 +64,33 @@
 	return strResult;
 }
 
++ (NSString *)findStringRegex:(NSString *)content regex:(NSString *)strRegex index:(int)nIndex
+{
+	if (content == Nil) {
+		return @"";
+	}
+	
+	NSError *error = NULL;
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:strRegex options:NSRegularExpressionDotMatchesLineSeparators error:&error];
+	NSArray *matches = [regex matchesInString:content options:0 range:NSMakeRange(0, [content length])];
+	
+	if ([matches count] <= nIndex) {
+		return @"";
+	}
+	
+	NSTextCheckingResult *match = matches[nIndex];
+	NSRange range = [match range];
+	
+	NSString *strResult;
+	if (!NSEqualRanges(range, NSMakeRange(NSNotFound, 0))) {
+		strResult = [content substringWithRange:range];
+	} else {
+		strResult = @"";
+	}
+	
+	return strResult;
+}
+
 + (NSString *)getMatchWithRegex:(NSString *)content regex:(NSString *)strRegex
 {
 	if (content == Nil) {

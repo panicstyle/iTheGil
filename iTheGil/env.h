@@ -21,7 +21,7 @@
 #endif
 
 #define MENU_SERVER  @"http://www.moojigae.or.kr"
-#define WWW_SERVER  @"http://www.thegir.org"
+#define WWW_SERVER  @"http://thegil.org"
 
 #define BOARD_LIST    @"/board-api-list.do?boardId="
 #define BOARD_READ    @"/board-api-read.do?boardId="
@@ -38,5 +38,8 @@
 #define RESULT_OK		0
 #define RESULT_AUTH_FAIL	1
 #define RESULT_LOGIN_FAIL	2
+
+#define NormalItems		1
+#define PictureItems	2
 
 #endif

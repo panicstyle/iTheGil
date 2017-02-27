@@ -9,8 +9,7 @@
 #import "MainView.h"
 #import "SetView.h"
 #import "AboutView.h"
-//#import "BoardView.h"
-//#import "RecentView.h"
+#import "ItemsView.h"
 #import "SetInfo.h"
 #import "LoginToService.h"
 #import "env.h"
@@ -57,8 +56,6 @@
 		BOOL result = [m_login LoginToService];
 		
 		if (result) {
-			[m_login PushRegister];
-			
 			[m_mainData fetchItems];
 		} else {
 			UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"로그인 오류"
@@ -78,7 +75,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 44.0f;
+	NSMutableDictionary *item = [m_arrayItems objectAtIndex:[indexPath row]];
+	if ([[item valueForKey:@"type"] isEqualToString:@"group"]) {
+		return 25.0f;
+	} else {
+		return 44.0f;
+	}
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -112,9 +114,13 @@
 		}
 	}
 	// Configure the cell...
-	cell.textLabel.text = [item valueForKey:@"title"];
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
+	if (![[item valueForKey:@"type"] isEqualToString:@"group"]) {
+		cell.textLabel.text = [NSString stringWithFormat:@"  %@", [item valueForKey:@"title"]];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	} else {
+		cell.textLabel.text = [item valueForKey:@"title"];
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	}
 	return cell;
 }
 
@@ -122,27 +128,14 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	// Get the new view controller using [segue destinationViewController].
-	// Pass the selected object to the new view controller.
-/*
-	if ([[segue identifier] isEqualToString:@"Recent"]) {
-		RecentView *viewController = [segue destinationViewController];
+	if ([[segue identifier] isEqualToString:@"Items"]) {
+		ItemsView *view = [segue destinationViewController];
 		NSIndexPath *currentIndexPath = [self.tbView indexPathForSelectedRow];
 		long row = currentIndexPath.row;
 		NSMutableDictionary *item = [m_arrayItems objectAtIndex:row];
-		viewController.m_strRecent = m_strRecent;
-	} else if ([[segue identifier] isEqualToString:@"Board"]) {
-		BoardView *viewController = [segue destinationViewController];
-		NSIndexPath *currentIndexPath = [self.tbView indexPathForSelectedRow];
-		long row = currentIndexPath.row;
-		NSMutableDictionary *item = [m_arrayItems objectAtIndex:row];
-		viewController.m_strCommNo = [item valueForKey:@"link"];
-	} else if ([[segue identifier] isEqualToString:@"SetLogin"]) {
-		SetView *viewController = [segue destinationViewController];
-		viewController.target = self;
-		viewController.selector = @selector(didChangedSetting:);
+		view.m_strBoardId = [item valueForKey:@"boardId"];
+		view.m_nMode = [item valueForKey:@"type"];
 	}
-*/
 }
 
 - (void)didReceiveMemoryWarning {

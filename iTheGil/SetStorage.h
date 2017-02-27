@@ -15,6 +15,5 @@
 
 @property (nonatomic, copy) NSString *userid;
 @property (nonatomic, copy) NSString *userpwd;
-@property (nonatomic, copy) NSNumber *switchPush;
 
 @end

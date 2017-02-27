@@ -15,7 +15,7 @@
 
 @implementation LoginToService
 
-//@synthesize respData;
+@synthesize m_strError;
 //@synthesize target;
 //@synthesize selector;
 
@@ -30,30 +30,23 @@
 	
     userid = storage.userid;
     userpwd = storage.userpwd;
-	switchPush = storage.switchPush;
-    
+	
 	NSLog(@"LoginToService...");
 	NSLog(@"id = %@", userid);
 	NSLog(@"pwd = %@", userpwd);
-	NSLog(@"push = %@", switchPush);
 	
-	if (userid == nil || [userid isEqualToString:@""] || userpwd == nil || [userpwd isEqualToString:@""]) {
+	if (userid == nil || [userid isEqualToString:@""] || userpwd == nil) {
         return FALSE;
 	}
-    
-    NSLog(@"Before Logout");
-   [self Logout];
-    NSLog(@"After Logout");
-//    [self GetMain];
-	
+    	
 	NSString *url;
-	url = [NSString stringWithFormat:@"%@/login-process.do", WWW_SERVER];
+	url = [NSString stringWithFormat:@"%@/2014/bbs/login_check.php", WWW_SERVER];
 	////NSLog(@"url = [%@]", url);
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	NSString *strReferer = [NSString stringWithFormat:@"%@/MLogin.do", WWW_SERVER];
+	NSString *strReferer = [NSString stringWithFormat:@"%@/index.php", WWW_SERVER];
 	
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
@@ -63,7 +56,7 @@
     NSString *upwd = [userpwd stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableData *body = [NSMutableData data];
-    [body appendData:[[NSString stringWithFormat:@"userId=%@&userPw=%@&boardId=&boardNo=&page=1&categoryId=-1&returnURI=&returnBoardNo=&beforeCommand=&command=LOGIN", uid, upwd]  dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"url=http%%3A%%2F%%2Fthegil.org%%2F2014&mb_id=%@&mb_password=%@", uid, upwd]  dataUsingEncoding:NSUTF8StringEncoding]];
  
     [request setHTTPBody:body];
  
@@ -74,45 +67,12 @@
     
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
-    if (returnString && [returnString rangeOfString:@"<script language=javascript>moveTop()</script>"].location != NSNotFound) {
-        return TRUE;
+	if ([Utils numberOfMatches:returnString regex:@"<title>오류안내 페이지"] > 0) {
+		m_strError = [Utils findStringRegex:returnString regex:@"(?<=alert\\(\\\").*?(?=\\\"\\);)"];
+		return FALSE;
     } else {
-		if ([Utils numberOfMatches:returnString regex:@"<b>시스템 메세지입니다</b>"] > 0) {
-			return FALSE;
-		} else {
-			return TRUE;
-		}
+		return TRUE;
     }
-
-    return FALSE;
-}
-
-- (void)Logout
-{
-	NSString *url;
-	url = [NSString stringWithFormat:@"%@/logout.do", WWW_SERVER];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:url]];
-    [request setHTTPMethod:@"GET"];
-    
-    NSMutableData *body = [NSMutableData data];
-    [request setHTTPBody:body];
-    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-}
-
-- (void)GetMain
-{
-	NSString *url;
-	url = [NSString stringWithFormat:@"%@/MLogin.do", WWW_SERVER];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:url]];
-    [request setHTTPMethod:@"GET"];
-    
-    NSMutableData *body = [NSMutableData data];
-    [request setHTTPBody:body];
-    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 }
 
 @end

@@ -25,28 +25,6 @@
 {
 	m_arrayItems = [[NSMutableArray alloc] init];
 	
-	NSMutableDictionary *currItem;
-	
-	currItem = [[NSMutableDictionary alloc] init];
-	[currItem setValue:@"최근글보기" forKey:@"title"];
-	[currItem setValue:@"recent" forKey:@"link"];
-	[m_arrayItems addObject:currItem];
-	
-	currItem = [[NSMutableDictionary alloc] init];
-	[currItem setValue:@"무지개교육마을" forKey:@"title"];
-	[currItem setValue:@"maul" forKey:@"link"];
-	[m_arrayItems addObject:currItem];
-	
-	currItem = [[NSMutableDictionary alloc] init];
-	[currItem setValue:@"초등무지개학교" forKey:@"title"];
-	[currItem setValue:@"school1" forKey:@"link"];
-	[m_arrayItems addObject:currItem];
-	
-	currItem = [[NSMutableDictionary alloc] init];
-	[currItem setValue:@"중등무지개학교" forKey:@"title"];
-	[currItem setValue:@"school2" forKey:@"link"];
-	[m_arrayItems addObject:currItem];
-	
 	[self fetchItems2];
 }
 
@@ -55,7 +33,9 @@
 	NSLog(@"fetchItems2");
 	m_receiveData = [[NSMutableData alloc] init];
 	
-	NSString *url = [NSString stringWithFormat:@"%@/board-api-menu.do?comm=0", MENU_SERVER];
+	NSString *url;
+	url = [NSString stringWithFormat:@"%@/board-api-menu.do?comm=4", MENU_SERVER];
+	
 	NSLog(@"query = [%@]", url);
 	
 	m_connection = [[NSURLConnection alloc]
@@ -86,8 +66,29 @@
 		return;
 	}
 	
-	m_strRecent = [parsedObject valueForKey:@"recent"];
-	NSLog(@"m_strRecent %@", m_strRecent);
+	NSArray *jsonItems = [parsedObject valueForKey:@"menu"];
+	
+	NSMutableDictionary *currItem;
+	
+	for (int i = 0; i < [jsonItems count]; i++) {
+		NSDictionary *jsonItem = [jsonItems objectAtIndex:i];
+		
+		currItem = [[NSMutableDictionary alloc] init];
+		
+		// title
+		NSString *strTitle = [jsonItem valueForKey:@"title"];
+		[currItem setValue:strTitle forKey:@"title"];
+		
+		// type
+		NSString *strType = [jsonItem valueForKey:@"type"];
+		[currItem setValue:strType forKey:@"type"];
+		
+		// boardId
+		NSString *strBoardId = [jsonItem valueForKey:@"boardId"];
+		[currItem setValue:strBoardId forKey:@"boardId"];
+		
+		[m_arrayItems addObject:currItem];
+	}
 	
 	[target performSelector:selector withObject:nil afterDelay:0];
 }

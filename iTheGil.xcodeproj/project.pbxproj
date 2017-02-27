@@ -22,6 +22,8 @@
 		ECA0EC5E1E62EBBF0078D944 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC591E62EBBF0078D944 /* Utils.m */; };
 		ECA0EC611E6301920078D944 /* SetView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC601E6301920078D944 /* SetView.m */; };
 		ECA0EC641E6301B70078D944 /* AboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC631E6301B70078D944 /* AboutView.m */; };
+		ECAE65EB1E64055600DB30E4 /* ItemsData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65E81E64055600DB30E4 /* ItemsData.m */; };
+		ECAE65EC1E64055600DB30E4 /* ItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65EA1E64055600DB30E4 /* ItemsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,10 @@
 		ECA0EC601E6301920078D944 /* SetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetView.m; sourceTree = "<group>"; };
 		ECA0EC621E6301B70078D944 /* AboutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutView.h; sourceTree = "<group>"; };
 		ECA0EC631E6301B70078D944 /* AboutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutView.m; sourceTree = "<group>"; };
+		ECAE65E71E64055600DB30E4 /* ItemsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsData.h; sourceTree = "<group>"; };
+		ECAE65E81E64055600DB30E4 /* ItemsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsData.m; sourceTree = "<group>"; };
+		ECAE65E91E64055600DB30E4 /* ItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsView.h; sourceTree = "<group>"; };
+		ECAE65EA1E64055600DB30E4 /* ItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,10 @@
 		ECA0EC321E626D3D0078D944 /* iTheGil */ = {
 			isa = PBXGroup;
 			children = (
+				ECAE65E71E64055600DB30E4 /* ItemsData.h */,
+				ECAE65E81E64055600DB30E4 /* ItemsData.m */,
+				ECAE65E91E64055600DB30E4 /* ItemsView.h */,
+				ECAE65EA1E64055600DB30E4 /* ItemsView.m */,
 				ECA0EC621E6301B70078D944 /* AboutView.h */,
 				ECA0EC631E6301B70078D944 /* AboutView.m */,
 				ECA0EC361E626D3D0078D944 /* AppDelegate.h */,
@@ -199,6 +209,7 @@
 			files = (
 				ECA0EC5E1E62EBBF0078D944 /* Utils.m in Sources */,
 				ECA0EC5D1E62EBBF0078D944 /* SetStorage.m in Sources */,
+				ECAE65EC1E64055600DB30E4 /* ItemsView.m in Sources */,
 				ECA0EC4E1E62EAFE0078D944 /* MainData.m in Sources */,
 				ECA0EC5C1E62EBBF0078D944 /* SetInfoStorage.m in Sources */,
 				ECA0EC3B1E626D3D0078D944 /* MainView.m in Sources */,
@@ -207,6 +218,7 @@
 				ECA0EC381E626D3D0078D944 /* AppDelegate.m in Sources */,
 				ECA0EC351E626D3D0078D944 /* main.m in Sources */,
 				ECA0EC641E6301B70078D944 /* AboutView.m in Sources */,
+				ECAE65EB1E64055600DB30E4 /* ItemsData.m in Sources */,
 				ECA0EC611E6301920078D944 /* SetView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +386,7 @@
 				ECA0EC491E626D3D0078D944 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
