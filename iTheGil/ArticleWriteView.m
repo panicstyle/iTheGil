@@ -259,6 +259,22 @@
 	
 	NSMutableData *body = [NSMutableData data];
 	
+	NSString *strWmode = @"";
+	NSString *strSCA = @"";
+	NSString *strPage = @"";
+	if ([m_nMode intValue] == ArticleWrite) {
+		strWmode = @"";
+		m_strBoardNo = @"0";
+	} else if ([m_nMode intValue] == ArticleModify) {
+		strWmode = @"u";
+		strPage = @"0";
+	} else if ([m_nMode intValue] == ArticleReply) {
+		strWmode = @"r";
+	}
+	if ([m_strBoardId isEqualToString:@"B13"]) {
+		strSCA = @"문서자료";
+	}
+
 	// uid
 	[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 	[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uid\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -267,36 +283,22 @@
 	// w
 	[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 	[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"w\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[[NSString stringWithFormat:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithFormat:@"%@\n", strWmode] dataUsingEncoding:NSUTF8StringEncoding]];
 	
 	// botable
 	[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 	[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"bo_table\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
 	[body appendData:[[NSString stringWithFormat:@"%@\n", m_strBoardId] dataUsingEncoding:NSUTF8StringEncoding]];
 	
-	if ([m_nMode intValue] == ArticleWrite) {
-		// wr_id
-		[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"wr_id\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[NSString stringWithFormat:@"0\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	} else if ([m_nMode intValue] == ArticleModify) {
-		// wr_id
-		[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"wr_id\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[NSString stringWithFormat:@"%@\n", m_strBoardNo] dataUsingEncoding:NSUTF8StringEncoding]];
-	}
+	// wr_id
+	[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"wr_id\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithFormat:@"%@\n", m_strBoardNo] dataUsingEncoding:NSUTF8StringEncoding]];
 
-	if ([m_strBoardId isEqualToString:@"B13"]) {
-		// sca
-		[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sca\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[NSString stringWithFormat:@"문서자료\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	} else {
-		// sca
-		[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sca\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[NSString stringWithFormat:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	}
+	// sca
+	[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sca\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithFormat:@"%@\n", strSCA] dataUsingEncoding:NSUTF8StringEncoding]];
 
 	// sfl
 	[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -326,7 +328,7 @@
 	// page
 	[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 	[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"page\"\n\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[[NSString stringWithFormat:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[body appendData:[[NSString stringWithFormat:@"%@\n", strPage] dataUsingEncoding:NSUTF8StringEncoding]];
 	
 	// html
 	[body appendData:[[NSString stringWithFormat:@"--%@\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];

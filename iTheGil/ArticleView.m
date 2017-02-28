@@ -7,8 +7,8 @@
 //
 
 #import "ArticleView.h"
-//#import "CommentWriteView.h"
-//#import "ArticleWriteView.h"
+#import "CommentWriteView.h"
+#import "ArticleWriteView.h"
 #import "env.h"
 #import "Utils.h"
 #import "ArticleData.h"
@@ -115,8 +115,6 @@
 
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	[super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-//	[self.tbView beginUpdates];
-//	[self.tbView endUpdates];
 	[self.tbView reloadData];
 }
 
@@ -578,7 +576,7 @@
 - (void)DeleteComment:(id)sender
 {
 	NSLog(@"DeleteArticleConfirm start");
-/*
+
 	UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
 	NSIndexPath *clickedButtonPath = [self.tbView indexPathForCell:clickedCell];
 	long row = clickedButtonPath.row;
@@ -599,7 +597,7 @@
 	// 삭제된 코멘트를 TableView에서 삭제한다.
 	[m_arrayItems removeObjectAtIndex:[clickedButtonPath row]];
 	[self.tbView reloadData];
-*/
+
 	NSLog(@"delete article success");
 }
 
@@ -645,8 +643,8 @@
 {
 	NSLog(@"DeleteArticleConfirm start");
 	NSLog(@"boardID=[%@], boardNo=[%@]", m_strBoardId, m_strBoardNo);
-/*
-	bool result = [m_articleData DeleteArticle:m_strCommId boardId:m_strBoardId boardNo:m_strBoardNo];
+
+	bool result = [m_articleData DeleteArticle:m_strBoardId boardNo:m_strBoardNo];
 	
 	if (result == false) {
         NSString *errmsg = @"글을 삭제할 수 없습니다. 잠시후 다시 해보세요.";
@@ -661,7 +659,7 @@
 		[alert addAction:defaultAction];
         return;
     }
-  */
+	
     NSLog(@"delete article success");
     [target performSelector:selector withObject:nil afterDelay:0];
     [[self navigationController] popViewControllerAnimated:YES];
@@ -680,68 +678,50 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"Comment"]) {
-/*		CommentWriteView *view = [segue destinationViewController];
-		view.m_nModify = [NSNumber numberWithInt:CommentWrite];
-		view.m_nMode = m_nMode;
-		view.m_isPNotice = m_isPNotice;
-		view.m_strCommId = m_strCommId;
+		CommentWriteView *view = [segue destinationViewController];
+		view.m_nMode = [NSNumber numberWithInt:CommentWrite];
 		view.m_strBoardId = m_strBoardId;
 		view.m_strBoardNo = m_strBoardNo;
 		view.m_strCommentNo = @"";
 		view.m_strComment = @"";
 		view.target = self;
-		view.selector = @selector(didWrite:); */
+		view.selector = @selector(didWrite:);
 	} else if ([[segue identifier] isEqualToString:@"CommentModify"]) {
-/*		UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
+		UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
 		NSIndexPath *clickedButtonPath = [self.tbView indexPathForCell:clickedCell];
-//		[self tableView:self.tbView didSelectRowAtIndexPath:clickedButtonPath];
-		
 		CommentWriteView *view = [segue destinationViewController];
-//		NSIndexPath *currentIndexPath = [self.tbView indexPathForSelectedRow];
 		long row = clickedButtonPath.row;
 		NSMutableDictionary *item = [m_arrayItems objectAtIndex:row];
-		view.m_nModify = [NSNumber numberWithInt:CommentModify];
-		view.m_nMode = m_nMode;
-		view.m_isPNotice = m_isPNotice;
-		view.m_strCommId = m_strCommId;
+		view.m_nMode = [NSNumber numberWithInt:CommentModify];
 		view.m_strBoardId = m_strBoardId;
 		view.m_strBoardNo = m_strBoardNo;
 		view.m_strCommentNo = [item valueForKey:@"no"];
 		view.m_strComment = [item valueForKey:@"comment"];
 		view.target = self;
-		view.selector = @selector(didWrite:); */
+		view.selector = @selector(didWrite:);
 	} else if ([[segue identifier] isEqualToString:@"CommentReply"]) {
-/*		UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
+		UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
 		NSIndexPath *clickedButtonPath = [self.tbView indexPathForCell:clickedCell];
-//		[self tableView:self.tbView didSelectRowAtIndexPath:clickedButtonPath];
-
 		CommentWriteView *view = [segue destinationViewController];
-//		NSIndexPath *currentIndexPath = [self.tbView indexPathForSelectedRow];
 		long row = clickedButtonPath.row;
 		NSMutableDictionary *item = [m_arrayItems objectAtIndex:row];
-		view.m_nModify = [NSNumber numberWithInt:CommentReply];
-		view.m_nMode = m_nMode;
-		view.m_isPNotice = m_isPNotice;
-		view.m_strCommId = m_strCommId;
+		view.m_nMode = [NSNumber numberWithInt:CommentReply];
 		view.m_strBoardId = m_strBoardId;
 		view.m_strBoardNo = m_strBoardNo;
 		view.m_strCommentNo = [item valueForKey:@"no"];
 		view.m_strComment = @"";
 		view.target = self;
-		view.selector = @selector(didWrite:); */
+		view.selector = @selector(didWrite:);
 	} else if ([[segue identifier] isEqualToString:@"ArticleModify"]) {
-/*		ArticleWriteView *view = [segue destinationViewController];
-		view.m_nModify = [NSNumber numberWithInt:ArticleModify];
-		view.m_nMode = m_nMode;
-		view.m_strCommId = m_strCommId;
+		ArticleWriteView *view = [segue destinationViewController];
+		view.m_nMode = [NSNumber numberWithInt:ArticleModify];
 		view.m_strBoardId = m_strBoardId;
 		view.m_strBoardNo = m_strBoardNo;
 		NSString *strEditableTitle = [Utils replaceStringHtmlTag:m_strTitle];
-		//		NSString *strEditableContent = [Utils replaceStringHtmlTag:m_strContent];
 		view.m_strTitle = strEditableTitle;
 		view.m_strContent = m_strEditableContent;
 		view.target = self;
-		view.selector = @selector(didWrite:); */
+		view.selector = @selector(didWrite:);
 	} else if ([[segue identifier] isEqualToString:@"WebLink"]) {
 /*		WebLinkView *view = [segue destinationViewController];
 		view.m_nFileType = [NSNumber numberWithInt:m_nFileType];

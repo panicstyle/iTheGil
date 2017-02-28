@@ -19,11 +19,8 @@
 @end
 
 @implementation CommentWriteView
-@synthesize m_nModify;
 @synthesize m_nMode;
-@synthesize m_isPNotice;
 @synthesize m_textView;
-@synthesize m_strCommId;
 @synthesize m_strBoardId;
 @synthesize m_strBoardNo;
 @synthesize m_strCommentNo;
@@ -48,16 +45,6 @@
 	self.selector = aSelector;
 }
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
- if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
- // Custom initialization
- }
- return self;
- }
- */
-
 - (void)viewDidLoad
 {
 	m_strErrorMsg = @"";
@@ -65,9 +52,9 @@
 	CGRect rectScreen = [self getScreenFrameForCurrentOrientation];
 	m_lContentHeight = rectScreen.size.height;
 	
-	if ([m_nModify intValue] == CommentWrite) {
+	if ([m_nMode intValue] == CommentWrite) {
 		[(UILabel *)self.navigationItem.titleView setText:@"댓글쓰기"];
-	} else if ([m_nModify intValue] == CommentModify) {
+	} else if ([m_nMode intValue] == CommentModify) {
 		[(UILabel *)self.navigationItem.titleView setText:@"댓글수정"];
 		m_textView.text = m_strComment;
 	} else {
@@ -183,27 +170,6 @@
 	[[self navigationController] popViewControllerAnimated:YES];
 }	
 
-- (void)AlertShow
-{
-    alertWait = [[UIAlertView alloc] initWithTitle:@"저장중입니다." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
-    [alertWait show];
-    
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    
-    // Adjust the indicator so it is up a few pixels from the bottom of the alert
-    indicator.center = CGPointMake(alertWait.bounds.size.width / 2, alertWait.bounds.size.height - 50);
-    [indicator startAnimating];
-    [alertWait addSubview:indicator];
-	
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-}
-
-- (void)AlertDismiss
-{
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [alertWait dismissWithClickedButtonIndex:0 animated:YES];
-}
-
 - (void)doneEditing:(id)sender
 {
 	BOOL result = [self writeComment];
@@ -225,21 +191,9 @@
 
 - (BOOL)writeComment
 {
-	return [self writeCommentNormal];
-}
-
-- (BOOL)writeCommentNormal
-{
 	NSString *url;
 	
-	//		/cafe.php?mode=up&sort=354&p1=tuntun&p2=HTTP/1.1
-	if ([m_nModify intValue] == CommentWrite || [m_nModify intValue] == CommentReply) {
-		url = [NSString stringWithFormat:@"%@/cafe.php?mode=up_add&sort=%@&sub_sort=&p1=%@&p2=",
-			   WWW_SERVER, m_strBoardId, m_strCommId];
-	} else if ([m_nModify intValue] == CommentModify) {
-		url = [NSString stringWithFormat:@"%@/cafe.php?mode=edit_reply&sort=%@&sub_sort=&p1=%@&p2=",
-			   WWW_SERVER, m_strBoardId, m_strCommId];
-	}
+	url = [NSString stringWithFormat:@"%@/2014/bbs/write_comment_update.php", WWW_SERVER];
 	
 	NSLog(@"url = [%@]", url);
 	
@@ -249,13 +203,16 @@
 	
 	NSMutableData *body = [NSMutableData data];
 	
-	if ([m_nModify intValue] == CommentWrite) {
-		[body appendData:[[NSString stringWithFormat:@"number=%@&content=%@", m_strBoardNo, m_textView.text] dataUsingEncoding:NSUTF8StringEncoding]];
-	} else if ([m_nModify intValue] == CommentModify) {
-		[body appendData:[[NSString stringWithFormat:@"number=%@&content=%@", m_strCommentNo, m_textView.text] dataUsingEncoding:NSUTF8StringEncoding]];
+	NSString *strWmode = @"";
+	if ([m_nMode intValue] == CommentWrite) {
+		strWmode = @"c";
+		m_strCommentNo = @"";
+	} else if ([m_nMode intValue] == CommentModify) {
+		strWmode = @"cu";
 	} else {	// CommentReply
-		[body appendData:[[NSString stringWithFormat:@"number=%@&number_re=%@&content=%@", m_strBoardNo, m_strCommentNo, m_textView.text] dataUsingEncoding:NSUTF8StringEncoding]];
+		strWmode = @"c";
 	}
+	[body appendData:[[NSString stringWithFormat:@"w=%@&bo_table=%@&wr_id=%@&comment_id=%@&sca=&sfl=&stx=&spt=&page=&is_good=0&wr_content=%@", strWmode, m_strBoardId, m_strBoardNo, m_strCommentNo, m_textView.text] dataUsingEncoding:NSUTF8StringEncoding]];
 	
 	[request setHTTPBody:body];
 	
@@ -264,109 +221,20 @@
 	NSString *str = [[NSString alloc] initWithData:respData
 										  encoding:NSUTF8StringEncoding];
 	NSLog(@"str = [%@]", str);
-	
-	if ([Utils numberOfMatches:str regex:@"<meta http-equiv=\"refresh\" content=\"0;"] > 0) {
+
+	if ([Utils numberOfMatches:str regex:@"history.back"] > 0) {
+		NSString *errmsg;
+		errmsg = [Utils findStringRegex:str regex:@"(<p class=\\\"cbg\\\">).*?(</p>)"];
+		errmsg = [Utils replaceStringHtmlTag:errmsg];
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"글 작성 오류"
+														message:errmsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
+		[alert show];
+		
+		return false;
+	} else {
 		NSLog(@"delete comment success");
 		return true;
-	} else {
-		NSString *errMsg = [Utils findStringRegex:str regex:@"(?<=window.alert\\(\\\").*?(?=\\\")"];
-		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"댓글 작성 오류"
-														message:errMsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
-		[alert show];
-		return false;
-	}
-}
-
-- (BOOL)writeCommentPNotice
-{
-	NSString *url = @"http://www.gongdong.or.kr/index.php";
-	
-	NSLog(@"url = [%@]", url);
-	
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:url]];
-	[request setHTTPMethod:@"POST"];
-	
-	NSMutableData *body = [NSMutableData data];
-	
-	[request setValue:@"http://www.gongdong.or.kr" forHTTPHeaderField:@"Origin"];
-	[request setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
-	
-	if ([m_nModify intValue] == CommentWrite) {
-		NSString *strReferer = [NSString stringWithFormat:@"http://www.gongdong.or.kr/notice/%@", m_strBoardNo];
-		[request setValue:strReferer forHTTPHeaderField:@"Referer"];
-		[body appendData:[[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n"
-						   "<methodCall>\n"
-						   "<params>\n"
-						   "<_filter><![CDATA[insert_comment]]></_filter>\n"
-						   "<error_return_url><![CDATA[/notice/%@]]></error_return_url>\n"
-						   "<mid><![CDATA[notice]]></mid>\n"
-						   "<document_srl><![CDATA[%@]]></document_srl>\n"
-						   "<comment_srl><![CDATA[0]]></comment_srl>\n"
-						   "<content><![CDATA[<p>%@</p>\n"
-						   "]]></content>\n"
-						   "<module><![CDATA[board]]></module>\n"
-						   "<act><![CDATA[procBoardInsertComment]]></act>\n"
-						   "</params>\n"
-						   "</methodCall>", m_strBoardNo, m_strBoardNo, m_textView.text] dataUsingEncoding:NSUTF8StringEncoding]];
-	} else if ([m_nModify intValue] == CommentModify) {
-		NSString *strReferer = [NSString stringWithFormat:@"http://www.gongdong.or.kr/index.php?mid=notice&document_srl=%@&act=dispBoardModifyComment&comment_srl=%@", m_strBoardNo, m_strCommentNo];
-		[request addValue:strReferer forHTTPHeaderField:@"Referer"];
-		[body appendData:[[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n"
-						   "<methodCall>\n"
-						   "<params>\n"
-						   "<_filter><![CDATA[insert_comment]]></_filter>\n"
-						   "<error_return_url><![CDATA[/index.php?mid=notice&document_srl=%@"
-						   "&act=dispBoardModifyComment&comment_srl=%@]]></error_return_url>\n"
-						   "<act><![CDATA[procBoardInsertComment]]></act>\n"
-						   "<mid><![CDATA[notice]]></mid>\n"
-						   "<document_srl><![CDATA[%@]]></document_srl>\n"
-						   "<comment_srl><![CDATA[%@]]></comment_srl>\n"
-						   "<content><![CDATA[<p>%@</p>\n"
-						   "]]></content>\n"
-						   "<parent_srl><![CDATA[0]]></parent_srl>\n"
-						   "<module><![CDATA[board]]></module>\n"
-						   "</params>\n"
-						   "</methodCall>", m_strBoardNo, m_strCommentNo, m_strBoardNo, m_strCommentNo, m_textView.text] dataUsingEncoding:NSUTF8StringEncoding]];
-	} else {	// CommentReply
-		NSString *strReferer = [NSString stringWithFormat:@"http://www.gongdong.or.kr/index.php?mid=notice&document_srl=%@&act=dispBoardReplyComment&comment_srl=%@", m_strBoardNo, m_strCommentNo];
-		[request addValue:strReferer forHTTPHeaderField:@"Referer"];
-		[body appendData:[[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n"
-						   "<methodCall>\n"
-						   "<params>\n"
-						   "<_filter><![CDATA[insert_comment]]></_filter>\n"
-						   "<error_return_url><![CDATA[/index.php?mid=notice&document_srl=%@&act=dispBoardReplyComment&comment_srl=%@]]></error_return_url>\n"
-						   "<mid><![CDATA[notice]]></mid>\n"
-						   "<document_srl><![CDATA[%@]]></document_srl>\n"
-						   "<comment_srl><![CDATA[0]]></comment_srl>\n"
-						   "<parent_srl><![CDATA[%@]]></parent_srl>\n"
-						   "<content><![CDATA[<p>%@</p>\n"
-						   "]]></content>\n"
-						   "<module><![CDATA[board]]></module>\n"
-						   "<act><![CDATA[procBoardInsertComment]]></act>\n"
-						   "</params>\n"
-						   "</methodCall>", m_strBoardNo, m_strCommentNo, m_strBoardNo, m_strCommentNo, m_textView.text] dataUsingEncoding:NSUTF8StringEncoding]];
-	}
-	
-	[request setHTTPBody:body];
-	
-	NSData *respData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	
-	NSString *str = [[NSString alloc] initWithData:respData
-										  encoding:NSUTF8StringEncoding];
-	NSLog(@"str = [%@]", str);
-	
-	if ([Utils numberOfMatches:str regex:@"<error>0</error>"] > 0) {
-		NSLog(@"write comment success");
-		return true;
-	} else {
-		NSString *errMsg = [Utils findStringRegex:str regex:@"(?<=<message>).*?(?=</message>)"];
-		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"댓글 작성 오류"
-														message:errMsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
-		[alert show];
-		return false;
 	}
 }
 

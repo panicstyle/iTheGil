@@ -34,6 +34,7 @@
 
 #define ArticleWrite	1
 #define ArticleModify	2
+#define ArticleReply	3
 
 #define RESULT_OK		0
 #define RESULT_AUTH_FAIL	1

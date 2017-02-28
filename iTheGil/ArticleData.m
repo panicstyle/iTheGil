@@ -204,27 +204,17 @@
 }
 
 
-- (bool)DeleteArticle:(NSString *)strCommId boardId:(NSString *)strBoardId boardNo:(NSString *)strBoardNo
+- (bool)DeleteArticle:(NSString *)strBoardId boardNo:(NSString *)strBoardNo
 {
-	// POST http://cafe.gongdong.or.kr/cafe.php?mode=del&sort=1225&sub_sort=&p1=tuntun&p2=
-	// number=977381&passwd=
-	
 	NSString *url;
-	url = [NSString stringWithFormat:@"%@/cafe.php?mode=del&sort=%@&sub_sort=&p1=%@&p2=",
-			   WWW_SERVER, strBoardId, strCommId];
+	url = [NSString stringWithFormat:@"%@/2014/bbs/delete.php?bo_table=%@&wr_id=%@&page=",
+			   WWW_SERVER, strBoardId, strBoardNo];
 	NSLog(@"url = [%@]", url);
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setURL:[NSURL URLWithString:url]];
-	[request setHTTPMethod:@"POST"];
+	[request setHTTPMethod:@"GET"];
 	
-	NSMutableData *body = [NSMutableData data];
-	// usetag = n
-	[body appendData:[[NSString stringWithFormat:@"number=%@&passwd=", strBoardNo] dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	[request setHTTPBody:body];
-	
-	//returningResponse:(NSURLResponse **)response error:(NSError **)error
 	NSData *respData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	
 	NSString *str = [[NSString alloc] initWithData:respData
@@ -232,50 +222,34 @@
 	//history.go(-1);
 	NSLog(@"returnData = [%@]", str);
 	
-	if ([Utils numberOfMatches:str regex:@"<meta http-equiv=\"refresh\" content=\"0;"] > 0) {
-		NSLog(@"delete article success");
-		return true;
-	} else {
-		NSString *errMsg = [Utils findStringRegex:str regex:@"(?<=window.alert\\(\\\").*?(?=\\\")"];
+	if ([Utils numberOfMatches:str regex:@"history.back"] > 0) {
+		NSString *errmsg;
+		errmsg = [Utils findStringRegex:str regex:@"(<p class=\\\"cbg\\\">).*?(</p>)"];
+		errmsg = [Utils replaceStringHtmlTag:errmsg];
 		
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"글 삭제 오류"
-														message:errMsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
+														message:errmsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
 		[alert show];
 		return false;
+	} else {
+		NSLog(@"delete article success");
+		return true;
 	}
 }
 
-- (bool)DeleteComment:(NSString *)strCommId boardId:(NSString *)strBoardId boardNo:(NSString *)strBoardNo commentNo:(NSString *)strCommentNo isPNotice:(int)isPNotice Mode:(int)nMode
-{
-	return [self DeleteCommentNormal:strCommId boardId:strBoardId boardNo:strBoardNo commentNo:strCommentNo];
-}
-
-- (bool)DeleteCommentNormal:(NSString *)strCommId boardId:(NSString *)strBoardId boardNo:(NSString *)strBoardNo commentNo:(NSString *)strCommentNo
+- (bool)DeleteComment:(NSString *)strBoardId boardNo:(NSString *)strBoardNo commentNo:(NSString *)strCommentNo
 {
 	NSLog(@"DeleteArticleConfirm start");
-	NSLog(@"commId=[%@], boardId=[%@], boardNo=[%@], commentID=[%@]", strCommId, strBoardId, strBoardNo, strCommentNo);
+	NSLog(@"boardId=[%@], boardNo=[%@], commentID=[%@]", strBoardId, strBoardNo, strCommentNo);
 	
-	// POST http://cafe.gongdong.or.kr/cafe.php?mode=del_reply&sort=1225&sub_sort=&p1=tuntun&p2=
-	// number=1588986&passwd=
-	
-	NSString *s;
-	s = @"%@/cafe.php?mode=del_reply&sort=%@&sub_sort=&p1=%@&p2=";
-	
-	NSString *url = [NSString stringWithFormat:s,
-					 WWW_SERVER, strBoardId, strCommId];
+	NSString *url = [NSString stringWithFormat:@"%@/2014/bbs/delete_comment.php?bo_table=%@&comment_id=%@&token=&page= ",
+					 WWW_SERVER, strBoardId, strCommentNo];
 	NSLog(@"url = [%@]", url);
 	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setURL:[NSURL URLWithString:url]];
-	[request setHTTPMethod:@"POST"];
+	[request setHTTPMethod:@"GET"];
 	
-	NSMutableData *body = [NSMutableData data];
-	// usetag = n
-	[body appendData:[[NSString stringWithFormat:@"number=%@&passwd=", strCommentNo] dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	[request setHTTPBody:body];
-	
-	//returningResponse:(NSURLResponse **)response error:(NSError **)error
 	NSData *respData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
 	
 	NSString *str = [[NSString alloc] initWithData:respData
@@ -283,72 +257,18 @@
 	//history.go(-1);
 	NSLog(@"returnData = [%@]", str);
 	
-	if ([Utils numberOfMatches:str regex:@"<meta http-equiv=\"refresh\" content=\"0;"] > 0) {
-		NSLog(@"delete comment success");
-		return true;
-	} else {
-		NSString *errMsg = [Utils findStringRegex:str regex:@"(?<=window.alert\\(\\\").*?(?=\\\")"];
+	if ([Utils numberOfMatches:str regex:@"history.back"] > 0) {
+		NSString *errmsg;
+		errmsg = [Utils findStringRegex:str regex:@"(<p class=\\\"cbg\\\">).*?(</p>)"];
+		errmsg = [Utils replaceStringHtmlTag:errmsg];
 		
-		UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"댓글 삭제 오류"
-													   message:errMsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"댓글 삭제 오류"
+														message:errmsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
 		[alert show];
 		return false;
-	}
-}
-
-- (bool)DeleteCommentPNotice:(NSString *)strCommId boardId:(NSString *)strBoardId boardNo:(NSString *)strBoardNo commentNo:(NSString *)strCommentNo
-{
-	NSLog(@"DeleteCommentPNotice start");
-	NSLog(@"articleNo=[%@], numberID=[%@]", strBoardNo, strCommentNo);
-	
-	NSString *url = @"http://www.gongdong.or.kr/index.php";
-	NSLog(@"url = [%@]", url);
-	
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:url]];
-	[request setHTTPMethod:@"POST"];
-	
-	[request setValue:@"http://www.gongdong.or.kr" forHTTPHeaderField:@"Origin"];
-	[request setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
-	NSString *strReferer = [NSString stringWithFormat:@"http://www.gongdong.or.kr/index.php?mid=notice&document_srl=%@&act=dispBoardDeleteComment&comment_srl=%@", strBoardNo, strCommentNo];
-	[request setValue:strReferer forHTTPHeaderField:@"Referer"];
-	
-	NSMutableData *body = [NSMutableData data];
-	// usetag = n
-	[body appendData:[[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n"
-					   "<methodCall>\n"
-					   "<params>\n"
-					   "<_filter><![CDATA[delete_comment]]></_filter>\n"
-					   "<error_return_url><![CDATA[/index.php?mid=notice&document_srl=%@"
-					   "&act=dispBoardDeleteComment&comment_srl=%@]]></error_return_url>\n"
-					   "<act><![CDATA[procBoardDeleteComment]]></act>\n"
-					   "<mid><![CDATA[notice]]></mid>\n"
-					   "<document_srl><![CDATA[%@]]></document_srl>\n"
-					   "<comment_srl><![CDATA[%@]]></comment_srl>\n"
-					   "<module><![CDATA[board]]></module>\n"
-					   "</params>\n"
-					   "</methodCall>", strBoardNo, strCommentNo, strBoardNo, strCommentNo] dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	[request setHTTPBody:body];
-	
-	//returningResponse:(NSURLResponse **)response error:(NSError **)error
-	NSData *respData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	
-	NSString *str = [[NSString alloc] initWithData:respData
-										  encoding:NSUTF8StringEncoding];
-	//history.go(-1);
-	NSLog(@"returnData = [%@]", str);
-	
-	if ([Utils numberOfMatches:str regex:@"<error>0</error>"] > 0) {
-		NSLog(@"write comment success");
-		return true;
 	} else {
-		NSString *errMsg = [Utils findStringRegex:str regex:@"(?<=<message>).*?(?=</message>)"];
-		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"댓글 작성 오류"
-														message:errMsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
-		[alert show];
-		return false;
+		NSLog(@"delete article success");
+		return true;
 	}
 }
 
