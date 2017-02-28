@@ -10,7 +10,7 @@
 #import "env.h"
 #import "LoginToService.h"
 #import "ArticleView.h"
-//#import "ArticleWriteView.h"
+#import "ArticleWriteView.h"
 #import "ItemsData.h"
 
 @interface ItemsView ()
@@ -318,18 +318,16 @@
 		view.m_strBoardNo = [item valueForKey:@"boardNo"];
 		view.target = self;
 		view.selector = @selector(didWrite:);
-	}/* else 	if ([[segue identifier] isEqualToString:@"ArticleWrite"]) {
+	} else 	if ([[segue identifier] isEqualToString:@"ArticleWrite"]) {
 		ArticleWriteView *view = [segue destinationViewController];
 		view.m_nMode = [NSNumber numberWithInt:ArticleWrite];
-		view.m_strCommId = m_strCommId;
 		view.m_strBoardId = m_strBoardId;
 		view.m_strBoardNo = @"";
 		view.m_strTitle = @"";
 		view.m_strContent = @"";
-		view.m_nMode = m_nMode;
 		view.target = self;
 		view.selector = @selector(didWrite:);
-	} */
+	}
 }
 
 #pragma mark - Screen Function

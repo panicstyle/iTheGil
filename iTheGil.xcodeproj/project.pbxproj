@@ -26,6 +26,9 @@
 		ECAE65EC1E64055600DB30E4 /* ItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65EA1E64055600DB30E4 /* ItemsView.m */; };
 		ECAE65F11E65359E00DB30E4 /* ArticleData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65EE1E65359E00DB30E4 /* ArticleData.m */; };
 		ECAE65F21E65359E00DB30E4 /* ArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65F01E65359E00DB30E4 /* ArticleView.m */; };
+		ECAE65F91E65550500DB30E4 /* ArticleWriteView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65F41E65550500DB30E4 /* ArticleWriteView.m */; };
+		ECAE65FA1E65550500DB30E4 /* CommentWriteView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65F61E65550500DB30E4 /* CommentWriteView.m */; };
+		ECAE65FB1E65550500DB30E4 /* GoogleCalView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65F81E65550500DB30E4 /* GoogleCalView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,12 @@
 		ECAE65EE1E65359E00DB30E4 /* ArticleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleData.m; sourceTree = "<group>"; };
 		ECAE65EF1E65359E00DB30E4 /* ArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleView.h; sourceTree = "<group>"; };
 		ECAE65F01E65359E00DB30E4 /* ArticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleView.m; sourceTree = "<group>"; };
+		ECAE65F31E65550500DB30E4 /* ArticleWriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleWriteView.h; sourceTree = "<group>"; };
+		ECAE65F41E65550500DB30E4 /* ArticleWriteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleWriteView.m; sourceTree = "<group>"; };
+		ECAE65F51E65550500DB30E4 /* CommentWriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentWriteView.h; sourceTree = "<group>"; };
+		ECAE65F61E65550500DB30E4 /* CommentWriteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentWriteView.m; sourceTree = "<group>"; };
+		ECAE65F71E65550500DB30E4 /* GoogleCalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleCalView.h; sourceTree = "<group>"; };
+		ECAE65F81E65550500DB30E4 /* GoogleCalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleCalView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +116,14 @@
 				ECAE65EE1E65359E00DB30E4 /* ArticleData.m */,
 				ECAE65EF1E65359E00DB30E4 /* ArticleView.h */,
 				ECAE65F01E65359E00DB30E4 /* ArticleView.m */,
+				ECAE65F31E65550500DB30E4 /* ArticleWriteView.h */,
+				ECAE65F41E65550500DB30E4 /* ArticleWriteView.m */,
 				ECA0EC3F1E626D3D0078D944 /* Assets.xcassets */,
+				ECAE65F51E65550500DB30E4 /* CommentWriteView.h */,
+				ECAE65F61E65550500DB30E4 /* CommentWriteView.m */,
 				ECA0EC4F1E62EBBF0078D944 /* env.h */,
+				ECAE65F71E65550500DB30E4 /* GoogleCalView.h */,
+				ECAE65F81E65550500DB30E4 /* GoogleCalView.m */,
 				ECA0EC441E626D3D0078D944 /* Info.plist */,
 				ECAE65E71E64055600DB30E4 /* ItemsData.h */,
 				ECAE65E81E64055600DB30E4 /* ItemsData.m */,
@@ -224,11 +239,14 @@
 				ECA0EC5C1E62EBBF0078D944 /* SetInfoStorage.m in Sources */,
 				ECA0EC3B1E626D3D0078D944 /* MainView.m in Sources */,
 				ECAE65F11E65359E00DB30E4 /* ArticleData.m in Sources */,
+				ECAE65F91E65550500DB30E4 /* ArticleWriteView.m in Sources */,
 				ECA0EC5B1E62EBBF0078D944 /* SetInfo.m in Sources */,
 				ECAE65F21E65359E00DB30E4 /* ArticleView.m in Sources */,
 				ECA0EC5A1E62EBBF0078D944 /* LoginToService.m in Sources */,
+				ECAE65FA1E65550500DB30E4 /* CommentWriteView.m in Sources */,
 				ECA0EC381E626D3D0078D944 /* AppDelegate.m in Sources */,
 				ECA0EC351E626D3D0078D944 /* main.m in Sources */,
+				ECAE65FB1E65550500DB30E4 /* GoogleCalView.m in Sources */,
 				ECA0EC641E6301B70078D944 /* AboutView.m in Sources */,
 				ECAE65EB1E64055600DB30E4 /* ItemsData.m in Sources */,
 				ECA0EC611E6301920078D944 /* SetView.m in Sources */,
