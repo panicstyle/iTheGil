@@ -9,7 +9,7 @@
 #import "ItemsView.h"
 #import "env.h"
 #import "LoginToService.h"
-//#import "ArticleView.h"
+#import "ArticleView.h"
 //#import "ArticleWriteView.h"
 #import "ItemsData.h"
 
@@ -149,11 +149,11 @@
 			
 			UILabel *labelName = (UILabel *)[cell viewWithTag:202];
 			NSString *strName = [item valueForKey:@"name"];
-//			NSString *strDate = [item valueForKey:@"date"];
-//			NSString *strNameDate = [NSString stringWithFormat:@"%@  %@", strName, strDate];
+			NSString *strDate = [item valueForKey:@"date"];
+			NSString *strNameDate = [NSString stringWithFormat:@"%@  %@", strName, strDate];
 			
-			NSMutableAttributedString *textName = [[NSMutableAttributedString alloc] initWithString:strName];
-//			[textName addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange([strName length] + 2, [strDate length])];
+			NSMutableAttributedString *textName = [[NSMutableAttributedString alloc] initWithString:strNameDate];
+			[textName addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange([strName length] + 2, [strDate length])];
 			labelName.attributedText = textName;
 			
 			UILabel *labelComment = (UILabel *)[cell viewWithTag:203];
@@ -309,27 +309,16 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-/*
-	// Get the new view controller using [segue destinationViewController].
-	// Pass the selected object to the new view controller.
 	if ([[segue identifier] isEqualToString:@"Article"]) {
 		ArticleView *view = [segue destinationViewController];
 		NSIndexPath *currentIndexPath = [self.tbView indexPathForSelectedRow];
 		long row = currentIndexPath.row;
 		NSMutableDictionary *item = [m_arrayItems objectAtIndex:row];
-		view.m_isPNotice = [item valueForKey:@"isPNotice"];
-		view.m_strCommId = m_strCommId;
 		view.m_strBoardId = m_strBoardId;
 		view.m_strBoardNo = [item valueForKey:@"boardNo"];
-		if ([m_nMode intValue] == CAFE_TYPE_EDU_APP) {
-			view.m_strApplyLink = [item valueForKey:@"applyLink"];
-		} else {
-			view.m_strApplyLink = @"";
-		}
-		view.m_nMode = m_nMode;
 		view.target = self;
 		view.selector = @selector(didWrite:);
-	} else 	if ([[segue identifier] isEqualToString:@"ArticleWrite"]) {
+	}/* else 	if ([[segue identifier] isEqualToString:@"ArticleWrite"]) {
 		ArticleWriteView *view = [segue destinationViewController];
 		view.m_nMode = [NSNumber numberWithInt:ArticleWrite];
 		view.m_strCommId = m_strCommId;
@@ -340,8 +329,7 @@
 		view.m_nMode = m_nMode;
 		view.target = self;
 		view.selector = @selector(didWrite:);
-	}
- */
+	} */
 }
 
 #pragma mark - Screen Function

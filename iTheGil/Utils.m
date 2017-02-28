@@ -148,22 +148,17 @@
 	
 	dest = [dest stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-/*
- strDest=strDest.replaceAll("\n","");
- strDest=strDest.replaceAll("\r","");
- strDest=strDest.replaceAll("<br>","\n");
- strDest=strDest.replaceAll("<br/>","\n");
- strDest=strDest.replaceAll("<br />","\n");
- strDest=strDest.replaceAll("&nbsp;"," ");
- strDest=strDest.replaceAll("&lt;","<");
- strDest=strDest.replaceAll("&gt;",">");
- strDest=strDest.replaceAll("&amp;","&");
- strDest=strDest.replaceAll("&quot;","\"");
- strDest=strDest.replaceAll("&apos;","'");
- strDest=strDest.replaceAll("(<b>\\[)\\d+(\\]</b>)", "");
- strDest=strDest.replaceAll("(<!--)(.|\\n)*?(-->)", "");
- strDest=strDest.replaceAll("(<)(.|\\n)*?(>)","");
- */
+	return dest;
+}
+
++ (NSString *)removeSpan:(NSString *)content
+{
+	NSString *dest;
+	dest = [NSString stringWithString:content];
+	dest = [self replaceStringRegex:dest regex:@"(<span).*?(</span>)" replace:@""];
+	
+	dest = [dest stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	
 	return dest;
 }
 

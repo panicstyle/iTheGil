@@ -42,4 +42,7 @@
 #define NormalItems		1
 #define PictureItems	2
 
+#define FILE_TYPE_HTML	0
+#define FILE_TYPE_IMAGE	1
+
 #endif

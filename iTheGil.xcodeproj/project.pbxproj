@@ -24,6 +24,8 @@
 		ECA0EC641E6301B70078D944 /* AboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC631E6301B70078D944 /* AboutView.m */; };
 		ECAE65EB1E64055600DB30E4 /* ItemsData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65E81E64055600DB30E4 /* ItemsData.m */; };
 		ECAE65EC1E64055600DB30E4 /* ItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65EA1E64055600DB30E4 /* ItemsView.m */; };
+		ECAE65F11E65359E00DB30E4 /* ArticleData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65EE1E65359E00DB30E4 /* ArticleData.m */; };
+		ECAE65F21E65359E00DB30E4 /* ArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65F01E65359E00DB30E4 /* ArticleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,10 @@
 		ECAE65E81E64055600DB30E4 /* ItemsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsData.m; sourceTree = "<group>"; };
 		ECAE65E91E64055600DB30E4 /* ItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsView.h; sourceTree = "<group>"; };
 		ECAE65EA1E64055600DB30E4 /* ItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsView.m; sourceTree = "<group>"; };
+		ECAE65ED1E65359E00DB30E4 /* ArticleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleData.h; sourceTree = "<group>"; };
+		ECAE65EE1E65359E00DB30E4 /* ArticleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleData.m; sourceTree = "<group>"; };
+		ECAE65EF1E65359E00DB30E4 /* ArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleView.h; sourceTree = "<group>"; };
+		ECAE65F01E65359E00DB30E4 /* ArticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,17 +99,21 @@
 		ECA0EC321E626D3D0078D944 /* iTheGil */ = {
 			isa = PBXGroup;
 			children = (
-				ECAE65E71E64055600DB30E4 /* ItemsData.h */,
-				ECAE65E81E64055600DB30E4 /* ItemsData.m */,
-				ECAE65E91E64055600DB30E4 /* ItemsView.h */,
-				ECAE65EA1E64055600DB30E4 /* ItemsView.m */,
 				ECA0EC621E6301B70078D944 /* AboutView.h */,
 				ECA0EC631E6301B70078D944 /* AboutView.m */,
 				ECA0EC361E626D3D0078D944 /* AppDelegate.h */,
 				ECA0EC371E626D3D0078D944 /* AppDelegate.m */,
+				ECAE65ED1E65359E00DB30E4 /* ArticleData.h */,
+				ECAE65EE1E65359E00DB30E4 /* ArticleData.m */,
+				ECAE65EF1E65359E00DB30E4 /* ArticleView.h */,
+				ECAE65F01E65359E00DB30E4 /* ArticleView.m */,
 				ECA0EC3F1E626D3D0078D944 /* Assets.xcassets */,
 				ECA0EC4F1E62EBBF0078D944 /* env.h */,
 				ECA0EC441E626D3D0078D944 /* Info.plist */,
+				ECAE65E71E64055600DB30E4 /* ItemsData.h */,
+				ECAE65E81E64055600DB30E4 /* ItemsData.m */,
+				ECAE65E91E64055600DB30E4 /* ItemsView.h */,
+				ECAE65EA1E64055600DB30E4 /* ItemsView.m */,
 				ECA0EC411E626D3D0078D944 /* LaunchScreen.storyboard */,
 				ECA0EC501E62EBBF0078D944 /* LoginToService.h */,
 				ECA0EC511E62EBBF0078D944 /* LoginToService.m */,
@@ -213,7 +223,9 @@
 				ECA0EC4E1E62EAFE0078D944 /* MainData.m in Sources */,
 				ECA0EC5C1E62EBBF0078D944 /* SetInfoStorage.m in Sources */,
 				ECA0EC3B1E626D3D0078D944 /* MainView.m in Sources */,
+				ECAE65F11E65359E00DB30E4 /* ArticleData.m in Sources */,
 				ECA0EC5B1E62EBBF0078D944 /* SetInfo.m in Sources */,
+				ECAE65F21E65359E00DB30E4 /* ArticleView.m in Sources */,
 				ECA0EC5A1E62EBBF0078D944 /* LoginToService.m in Sources */,
 				ECA0EC381E626D3D0078D944 /* AppDelegate.m in Sources */,
 				ECA0EC351E626D3D0078D944 /* main.m in Sources */,

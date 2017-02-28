@@ -57,11 +57,21 @@
 {
 	NSString *str = [[NSString alloc] initWithData:m_receiveData
 										  encoding:NSUTF8StringEncoding];
+	
+	NSLog(@"html = %@", str);
+	if ([Utils numberOfMatches:str regex:@"<ul id=\\\"gall_ul\\\">"] > 0) {
+		// 갤러리 모드
+		m_nItemMode = [NSNumber numberWithInt:PictureItems];
+		[self getPictureItems:str];
+	} else {
+		// 일반 모드
+		m_nItemMode = [NSNumber numberWithInt:NormalItems];
+		[self getNormalItems:str];
+	}
 
-	[self getNormaltems:str];
 }
 
-- (void)getNormaltems:(NSString *)str
+- (void)getNormalItems:(NSString *)str
 {
 	NSString *tbody = [Utils findStringWith:str from:@"<tbody>" to:@"</tbody>"];
 	
@@ -74,7 +84,12 @@
 		NSString *str2 = [tbody substringWithRange:matchRange];
 		currItem = [[NSMutableDictionary alloc] init];
 		
-		[currItem setValue:[NSNumber numberWithInt:0] forKey:@"isRe"];
+		// isNew
+		if ([Utils numberOfMatches:str2 regex:@"icon_reply.gif"]) {
+			[currItem setValue:@"1" forKey:@"isRe"];
+		} else {
+			[currItem setValue:@"0" forKey:@"isRe"];
+		}
 		
 		// find [공지]
 		if ([Utils numberOfMatches:str2 regex:@"class=\\\"bo_notice\\\""] > 0) {
@@ -85,6 +100,7 @@
 		
 		// subject
 		NSString *strSubject = [Utils findStringRegex:str2 regex:@"(<a href=).*?(</a>)"];
+		strSubject = [Utils removeSpan:strSubject];
 		strSubject = [Utils replaceStringHtmlTag:strSubject];
 		[currItem setValue:strSubject forKey:@"subject"];
 		
@@ -117,33 +133,62 @@
 		
 		[m_arrayItems addObject:currItem];
 	}
-/*
+
+	[target performSelector:selector withObject:[NSNumber numberWithInt:RESULT_OK] afterDelay:0];
+}
+
+- (void)getPictureItems:(NSString *)str
+{
+	NSString *tbody = [Utils findStringWith:str from:@"<form name=\"fboardlist" to:@"</form>"];
+
+	NSArray *arrayItems = [tbody componentsSeparatedByString:@"<li class=\"gall_li"];
+	
 	NSMutableDictionary *currItem;
-	int i = 0;
-	for (i = 0; i < 2; i++) {
+	
+	for (int i = 1; i < [arrayItems count]; i++) {
+		NSString *str2 = [arrayItems objectAtIndex:i];
 		currItem = [[NSMutableDictionary alloc] init];
 		
+		[currItem setValue:[NSNumber numberWithInt:0] forKey:@"isNotice"];
 		[currItem setValue:[NSNumber numberWithInt:0] forKey:@"isRe"];
 		
-		[currItem setValue:[NSNumber numberWithInt:1] forKey:@"isNotice"];
+		// subject
+		NSString *strSubject = [Utils findStringRegex:str2 regex:@"(<li class=\\\"gall_text_href).*?(</li>)"];
+		strSubject = [Utils removeSpan:strSubject];
+		strSubject = [Utils replaceStringHtmlTag:strSubject];
+		[currItem setValue:strSubject forKey:@"subject"];
 		
-		[currItem setValue:@"SUBJECT" forKey:@"subject"];
+		// boardNo
+		NSString *boardNo = [Utils findStringRegex:str2 regex:@"(?<=wr_id=).*?(?=&amp)"];
+		[currItem setValue:boardNo forKey:@"boardNo"];
 		
-		[currItem setValue:@"1234" forKey:@"boardNo"];
+		// 댓글 갯수
+		NSString *strComment = [Utils findStringRegex:str2 regex:@"(?<=<span class=\\\"cnt_cmt\\\">).*?(?=</span>)"];
+		[currItem setValue:strComment forKey:@"comment"];
 		
-		[currItem setValue:@"12" forKey:@"comment"];
+		// name
+		NSString *strName = [Utils findStringRegex:str2 regex:@"(<span class=\\\"sv_member).*?(<li>)"];
+		strName = [Utils replaceStringHtmlTag:strName];
+		[currItem setValue:strName forKey:@"name"];
 		
-		[currItem setValue:@"1" forKey:@"isNew"];
+		// date
+		NSString *strDate = [Utils findStringRegex:str2 regex:@"(?<=작성일 </span>).*?(?=</li>)"];
+		[currItem setValue:strDate forKey:@"date"];
 		
-		[currItem setValue:@"NAME" forKey:@"name"];
+		// Hit
+		NSString *strHit = [Utils findStringRegex:str2 regex:@"(?<=조회 </span>).*?(?=</li>)"];
+		[currItem setValue:strHit forKey:@"hit"];
 		
-		[currItem setValue:@"00-00" forKey:@"date"];
+		// piclink
+		NSString *strPicLink = [Utils findStringRegex:str2 regex:@"(?<=<img src=\\\").*?(?=\\\")"];
+		[currItem setValue:strPicLink forKey:@"piclink"];
 		
-		[currItem setValue:@"1" forKey:@"hit"];
+		// isNew
+		[currItem setValue:[NSNumber numberWithInt:0] forKey:@"isNew"];
 		
 		[m_arrayItems addObject:currItem];
 	}
-*/
+	
 	[target performSelector:selector withObject:[NSNumber numberWithInt:RESULT_OK] afterDelay:0];
 }
 
