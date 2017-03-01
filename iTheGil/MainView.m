@@ -10,6 +10,7 @@
 #import "SetView.h"
 #import "AboutView.h"
 #import "ItemsView.h"
+#import "NewView.h"
 #import "SetInfo.h"
 #import "LoginToService.h"
 #import "env.h"
@@ -93,24 +94,32 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *reusedentifier = @"reuseIdentifier";
-	static NSString *recentdentifier = @"recentIdentifier";
+	static NSString *reuseIdentifier = @"reuseIdentifier";
+	static NSString *newIdentifier = @"newIdentifier";
+	static NSString *groupIdentifier = @"groupIdentifier";
 	
 	UITableViewCell *cell;
 	NSMutableDictionary *item = [m_arrayItems objectAtIndex:[indexPath row]];
-	if ([[item valueForKey:@"link"] isEqualToString:@"recent"]) {
+	if ([[item valueForKey:@"type"] isEqualToString:@"new"]) {
 		cell = [tableView
-				dequeueReusableCellWithIdentifier:recentdentifier];
+				dequeueReusableCellWithIdentifier:newIdentifier];
 		if (cell == nil) {
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-										  reuseIdentifier:recentdentifier];
+										  reuseIdentifier:newIdentifier];
+		}
+	} else if ([[item valueForKey:@"type"] isEqualToString:@"group"]) {
+		cell = [tableView
+				dequeueReusableCellWithIdentifier:groupIdentifier];
+		if (cell == nil) {
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+										  reuseIdentifier:groupIdentifier];
 		}
 	} else {
 		cell = [tableView
-				dequeueReusableCellWithIdentifier:reusedentifier];
+				dequeueReusableCellWithIdentifier:reuseIdentifier];
 		if (cell == nil) {
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-										  reuseIdentifier:reusedentifier];
+										  reuseIdentifier:reuseIdentifier];
 		}
 	}
 	// Configure the cell...
@@ -130,6 +139,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"Items"]) {
 		ItemsView *view = [segue destinationViewController];
+		NSIndexPath *currentIndexPath = [self.tbView indexPathForSelectedRow];
+		long row = currentIndexPath.row;
+		NSMutableDictionary *item = [m_arrayItems objectAtIndex:row];
+		view.m_strBoardId = [item valueForKey:@"boardId"];
+		view.m_nMode = [item valueForKey:@"type"];
+	} else if ([[segue identifier] isEqualToString:@"Items"]) {
+		NewView *view = [segue destinationViewController];
 		NSIndexPath *currentIndexPath = [self.tbView indexPathForSelectedRow];
 		long row = currentIndexPath.row;
 		NSMutableDictionary *item = [m_arrayItems objectAtIndex:row];
