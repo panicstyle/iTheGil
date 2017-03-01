@@ -67,6 +67,8 @@
 											 selector:@selector(keyboardDidHide:)
 												 name:UIKeyboardDidHideNotification
 											   object:nil];
+	
+	[self requestEditPage];
 }
 
 /*
@@ -216,6 +218,22 @@
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 
+- (void) requestEditPage
+{
+	NSString *url = [NSString stringWithFormat:@"%@/2014/bbs/write.php?w=u&bo_table=%@&wr_id=%@&page=", WWW_SERVER, m_strBoardId, m_strBoardNo];
+	
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:url]];
+	[request setHTTPMethod:@"GET"];
+	
+	NSData *respData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+	
+	NSString *str = [[NSString alloc] initWithData:respData
+										  encoding:NSUTF8StringEncoding];
+	
+	NSLog(@"requestEditPage = %@", str);
+}
+
 - (void) doneEditing:(id)sender
 {
 	//	[contentView resignFirstResponder];
@@ -242,6 +260,7 @@
 	
 	//		/cafe.php?mode=up&sort=354&p1=tuntun&p2=HTTP/1.1
 	url = [NSString stringWithFormat:@"%@/2014/bbs/write_update.php", WWW_SERVER];
+	NSString *strReferer = [NSString stringWithFormat:@"http://thegil.org/2014/bbs/write.php?w=u&bo_table=%@&wr_id=%@&page=", m_strBoardId, m_strBoardNo];
 	
 	NSData *respData;
 
@@ -256,6 +275,7 @@
 	NSString *boundary = @"0xKhTmLbOuNdArY";  // important!!!
 	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
 	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+	[request addValue:strReferer forHTTPHeaderField: @"Referer"];
 	
 	NSMutableData *body = [NSMutableData data];
 	
@@ -396,7 +416,7 @@
 	
 	NSString *str = [[NSString alloc] initWithData:respData
 										  encoding:NSUTF8StringEncoding];
-	if ([Utils numberOfMatches:str regex:@"history.back"] > 0) {
+	if ([Utils numberOfMatches:str regex:@"<title>오류안내 페이지"] > 0) {
 		NSString *errmsg;
 		errmsg = [Utils findStringRegex:str regex:@"(<p class=\\\"cbg\\\">).*?(</p>)"];
 		errmsg = [Utils replaceStringHtmlTag:errmsg];

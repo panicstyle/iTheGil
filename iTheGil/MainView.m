@@ -151,7 +151,12 @@
 		NSMutableDictionary *item = [m_arrayItems objectAtIndex:row];
 		view.m_strBoardId = [item valueForKey:@"boardId"];
 		view.m_nMode = [item valueForKey:@"type"];
+	} else if ([[segue identifier] isEqualToString:@"SetLogin"]) {
+		SetView *viewController = [segue destinationViewController];
+		viewController.target = self;
+		viewController.selector = @selector(didChangedSetting:);
 	}
+
 }
 
 - (void)didReceiveMemoryWarning {

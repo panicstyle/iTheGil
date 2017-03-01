@@ -24,6 +24,7 @@
 		ECA0EC641E6301B70078D944 /* AboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC631E6301B70078D944 /* AboutView.m */; };
 		ECA0EC691E664C3B0078D944 /* NewData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC661E664C3B0078D944 /* NewData.m */; };
 		ECA0EC6A1E664C3B0078D944 /* NewView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC681E664C3B0078D944 /* NewView.m */; };
+		ECA0EC6D1E66C2FD0078D944 /* WebLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA0EC6C1E66C2FD0078D944 /* WebLinkView.m */; };
 		ECAE65EB1E64055600DB30E4 /* ItemsData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65E81E64055600DB30E4 /* ItemsData.m */; };
 		ECAE65EC1E64055600DB30E4 /* ItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65EA1E64055600DB30E4 /* ItemsView.m */; };
 		ECAE65F11E65359E00DB30E4 /* ArticleData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE65EE1E65359E00DB30E4 /* ArticleData.m */; };
@@ -66,6 +67,8 @@
 		ECA0EC661E664C3B0078D944 /* NewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewData.m; sourceTree = "<group>"; };
 		ECA0EC671E664C3B0078D944 /* NewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewView.h; sourceTree = "<group>"; };
 		ECA0EC681E664C3B0078D944 /* NewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewView.m; sourceTree = "<group>"; };
+		ECA0EC6B1E66C2FD0078D944 /* WebLinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebLinkView.h; sourceTree = "<group>"; };
+		ECA0EC6C1E66C2FD0078D944 /* WebLinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebLinkView.m; sourceTree = "<group>"; };
 		ECAE65E71E64055600DB30E4 /* ItemsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsData.h; sourceTree = "<group>"; };
 		ECAE65E81E64055600DB30E4 /* ItemsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsData.m; sourceTree = "<group>"; };
 		ECAE65E91E64055600DB30E4 /* ItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsView.h; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 		ECA0EC321E626D3D0078D944 /* iTheGil */ = {
 			isa = PBXGroup;
 			children = (
+				ECA0EC6B1E66C2FD0078D944 /* WebLinkView.h */,
+				ECA0EC6C1E66C2FD0078D944 /* WebLinkView.m */,
 				ECA0EC621E6301B70078D944 /* AboutView.h */,
 				ECA0EC631E6301B70078D944 /* AboutView.m */,
 				ECA0EC361E626D3D0078D944 /* AppDelegate.h */,
@@ -251,6 +256,7 @@
 				ECA0EC3B1E626D3D0078D944 /* MainView.m in Sources */,
 				ECAE65F11E65359E00DB30E4 /* ArticleData.m in Sources */,
 				ECAE65F91E65550500DB30E4 /* ArticleWriteView.m in Sources */,
+				ECA0EC6D1E66C2FD0078D944 /* WebLinkView.m in Sources */,
 				ECA0EC691E664C3B0078D944 /* NewData.m in Sources */,
 				ECA0EC5B1E62EBBF0078D944 /* SetInfo.m in Sources */,
 				ECAE65F21E65359E00DB30E4 /* ArticleView.m in Sources */,

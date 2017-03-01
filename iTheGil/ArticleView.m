@@ -12,7 +12,7 @@
 #import "env.h"
 #import "Utils.h"
 #import "ArticleData.h"
-//#import "WebLinkView.h"
+#import "WebLinkView.h"
 
 @interface ArticleView ()
 {
@@ -419,7 +419,7 @@
 	if (navigationType == UIWebViewNavigationTypeLinkClicked) {
 		
 		NSString *fileName;
-		fileName = [Utils findStringRegex:urlString regex:@"(?<=&name=).*?(?=$)"];
+		fileName = [m_attachItems valueForKey:urlString];
 		fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		NSString *suffix = [[fileName substringFromIndex:[fileName length] - 4] lowercaseString];
 		
@@ -723,9 +723,9 @@
 		view.target = self;
 		view.selector = @selector(didWrite:);
 	} else if ([[segue identifier] isEqualToString:@"WebLink"]) {
-/*		WebLinkView *view = [segue destinationViewController];
+		WebLinkView *view = [segue destinationViewController];
 		view.m_nFileType = [NSNumber numberWithInt:m_nFileType];
-		view.m_strLink = m_strWebLink; */
+		view.m_strLink = m_strWebLink;
 	}
 }
 

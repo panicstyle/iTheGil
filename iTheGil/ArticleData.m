@@ -131,6 +131,8 @@
 	NSString *strAttach = [Utils findStringRegex:m_strHtml regex:@"(<!-- 첨부파일 시작).*?(첨부파일 끝 -->)"];
 	strAttach = [strAttach stringByReplacingOccurrencesOfString:@"<h2>첨부파일</h2>" withString:@""];
 	
+	m_attachItems = [self parseAttach:strAttach];
+	
 	NSString *strComment = [Utils findStringRegex:m_strHtml regex:@"(<!-- 댓글 시작).*?(댓글 끝 -->)"];
 	
 	NSArray *commentItems = [strComment componentsSeparatedByString:@"<article id="];
@@ -193,10 +195,10 @@
 		NSRange matchRange = [match range];
 		NSString *str = [strAttach substringWithRange:matchRange];
 		
-		NSString *strKey = [Utils findStringRegex:str regex:@"(?<=href=\").*?(?=\">)"];
+		NSString *strKey = [Utils findStringRegex:str regex:@"(?<=href=\\\").*?(?=\\\")"];
 		strKey = [strKey stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
 
-		NSString *strValue= [Utils findStringRegex:str regex:@"(?<=\">).*?(?=<span class)"];
+		NSString *strValue= [Utils findStringRegex:str regex:@"(?<=<strong>).*?(?=</strong>)"];
 		strValue = [strValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 		[currItem setValue:strValue forKey:strKey];
 	}

@@ -189,6 +189,21 @@
 	}
 }
 
+- (void)requestEditPage
+{
+	NSString *url;
+	
+	url = [NSString stringWithFormat:@"%@/2014/bbs/write_comment_update.php", WWW_SERVER];
+	
+	NSLog(@"url = [%@]", url);
+	
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:url]];
+	[request setHTTPMethod:@"GET"];
+	
+	[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+}
+
 - (BOOL)writeComment
 {
 	NSString *url;

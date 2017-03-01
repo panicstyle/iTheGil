@@ -25,7 +25,7 @@
 
 #define BOARD_LIST    @"/board-api-list.do?boardId="
 #define BOARD_READ    @"/board-api-read.do?boardId="
-#define kSampleAdUnitID @"ca-app-pub-9032980304073628/9510593996"
+#define kSampleAdUnitID @"ca-app-pub-9032980304073628/2001053999"
 #define AdPubID @"a1513842aba33a7"
 
 #define CommentWrite	1

@@ -211,35 +211,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새글 알림 받기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uys-TK-ZZz">
-                                <rect key="frame" x="20" y="163" width="98" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="2sa-1C-mei"/>
-                                    <constraint firstAttribute="width" constant="98" id="YsI-dC-oiP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cfn-db-grA">
-                                <rect key="frame" x="345" y="158" width="51" height="31"/>
-                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Cfn-db-grA" firstAttribute="top" secondItem="4mx-m9-RZR" secondAttribute="bottom" constant="8" id="0ue-Yd-D6j"/>
                             <constraint firstItem="HRa-vo-njJ" firstAttribute="top" secondItem="Qcb-kV-tkB" secondAttribute="bottom" constant="12" id="2Iv-Nd-Bpp"/>
                             <constraint firstItem="4mx-m9-RZR" firstAttribute="leading" secondItem="JfG-Ps-xK4" secondAttribute="trailing" constant="8" id="2zU-Bf-ybr"/>
                             <constraint firstItem="4mx-m9-RZR" firstAttribute="trailing" secondItem="i4V-kS-Ski" secondAttribute="trailingMargin" id="4pa-oR-fd2"/>
                             <constraint firstItem="4mx-m9-RZR" firstAttribute="top" secondItem="HRa-vo-njJ" secondAttribute="bottom" constant="14" id="4xK-f1-0uQ"/>
                             <constraint firstItem="HRa-vo-njJ" firstAttribute="trailing" secondItem="i4V-kS-Ski" secondAttribute="trailingMargin" id="9tk-kP-lhb"/>
-                            <constraint firstItem="Uys-TK-ZZz" firstAttribute="leading" secondItem="i4V-kS-Ski" secondAttribute="leadingMargin" id="Jg2-q9-m7w"/>
                             <constraint firstItem="fAc-cZ-aLs" firstAttribute="leading" secondItem="i4V-kS-Ski" secondAttribute="leadingMargin" id="REt-HZ-cwx"/>
-                            <constraint firstItem="Uys-TK-ZZz" firstAttribute="top" secondItem="JfG-Ps-xK4" secondAttribute="bottom" constant="18" id="XzY-C4-CpD"/>
                             <constraint firstItem="fAc-cZ-aLs" firstAttribute="top" secondItem="Qcb-kV-tkB" secondAttribute="bottom" constant="16" id="YMU-GH-B4k"/>
                             <constraint firstItem="JfG-Ps-xK4" firstAttribute="leading" secondItem="i4V-kS-Ski" secondAttribute="leadingMargin" id="fmf-wb-vhU"/>
                             <constraint firstItem="HRa-vo-njJ" firstAttribute="leading" secondItem="fAc-cZ-aLs" secondAttribute="trailing" constant="8" id="o4L-Hq-Ijg"/>
-                            <constraint firstItem="Cfn-db-grA" firstAttribute="trailing" secondItem="i4V-kS-Ski" secondAttribute="trailingMargin" id="p7A-OH-JHv"/>
                             <constraint firstItem="JfG-Ps-xK4" firstAttribute="top" secondItem="fAc-cZ-aLs" secondAttribute="bottom" constant="23" id="vmf-EE-QZO"/>
                         </constraints>
                     </view>
@@ -247,7 +230,6 @@
                     <connections>
                         <outlet property="idField" destination="HRa-vo-njJ" id="BQa-9W-Wpx"/>
                         <outlet property="pwdField" destination="4mx-m9-RZR" id="19h-Pa-CMi"/>
-                        <outlet property="switchPush" destination="Cfn-db-grA" id="ePi-Q9-6aW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w4L-Cb-twW" userLabel="First Responder" sceneMemberID="firstResponder"/>
