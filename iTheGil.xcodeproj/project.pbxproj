@@ -117,8 +117,6 @@
 		ECA0EC321E626D3D0078D944 /* iTheGil */ = {
 			isa = PBXGroup;
 			children = (
-				ECA0EC6B1E66C2FD0078D944 /* WebLinkView.h */,
-				ECA0EC6C1E66C2FD0078D944 /* WebLinkView.m */,
 				ECA0EC621E6301B70078D944 /* AboutView.h */,
 				ECA0EC631E6301B70078D944 /* AboutView.m */,
 				ECA0EC361E626D3D0078D944 /* AppDelegate.h */,
@@ -163,6 +161,8 @@
 				ECA0EC331E626D3D0078D944 /* Supporting Files */,
 				ECA0EC581E62EBBF0078D944 /* Utils.h */,
 				ECA0EC591E62EBBF0078D944 /* Utils.m */,
+				ECA0EC6B1E66C2FD0078D944 /* WebLinkView.h */,
+				ECA0EC6C1E66C2FD0078D944 /* WebLinkView.m */,
 			);
 			path = iTheGil;
 			sourceTree = "<group>";

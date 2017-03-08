@@ -44,6 +44,27 @@
 							];
 	[self.bannerView loadRequest:request];
 
+	SetInfo *setInfo = [[SetInfo alloc] init];
+	
+	if (![setInfo CheckVersionInfo]) {
+		// 버전 업데이트 안내 다이얼로그 표시
+		NSString *NotiMessage = @"이미지 첨부기능이 추가되었습니다.\n글쓰기 밑에 이미지버튼을 눌러 이미지를 첨부하세요.";
+		UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"알림"
+																	   message:NotiMessage
+																preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault
+															  handler:^(UIAlertAction * action)
+										{
+											[alert dismissViewControllerAnimated:YES completion:nil];
+										}];
+		
+		[alert addAction:defaultAction];
+		
+		[self presentViewController:alert animated:YES completion:nil];
+		[setInfo SaveVersionInfo];
+	}
+	
 	m_arrayItems = [[NSMutableArray alloc] init];
 	
 	m_mainData = [[MainData alloc] init];

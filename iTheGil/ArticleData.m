@@ -131,6 +131,9 @@
 	NSString *strAttach = [Utils findStringRegex:m_strHtml regex:@"(<!-- 첨부파일 시작).*?(첨부파일 끝 -->)"];
 	strAttach = [strAttach stringByReplacingOccurrencesOfString:@"<h2>첨부파일</h2>" withString:@""];
 	
+	NSString *strImage = [Utils findStringRegex:m_strHtml regex:@"(<div id=\\\"bo_v_img\\\">).*?(</div>)"];
+	strImage = [strImage stringByReplacingOccurrencesOfString:@"<img " withString:@"<img onload=\"resizeImage2(this)\" "];
+	
 	m_attachItems = [self parseAttach:strAttach];
 	
 	NSString *strComment = [Utils findStringRegex:m_strHtml regex:@"(<!-- 댓글 시작).*?(댓글 끝 -->)"];
@@ -179,7 +182,7 @@
 	NSString *resizeStr = @"<script>function resizeImage2(mm){var window_innerWidth = window.innerWidth - 30;var width = eval(mm.width);var height = eval(mm.height);if( width > window_innerWidth ){var p_height = window_innerWidth / width;var new_height = height * p_height;eval(mm.width = window_innerWidth);eval(mm.height = new_height);}}</script>";
 	//        NSString *imageopenStr = [NSString stringWithString:@"<script>function image_open(src, mm){var src1 = 'image2.php?imgsrc='+src;window.open(src1,'image','width=1,height=1,scrollbars=yes,resizable=yes');}</script>"];
 	
-	m_strContent = [NSString stringWithFormat:@"%@%@%@", resizeStr, m_strContent, strAttach];
+	m_strContent = [NSString stringWithFormat:@"%@%@%@%@", resizeStr, m_strContent, strAttach, strImage];
 
 	[target performSelector:selector withObject:[NSNumber numberWithInt:RESULT_OK] afterDelay:0];
 	return;
