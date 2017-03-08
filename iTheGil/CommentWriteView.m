@@ -105,7 +105,7 @@
 -(void)animateTextView:(NSNotification *)notif up:(BOOL)up
 {
 	NSDictionary* keyboardInfo = [notif userInfo];
-	NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+	NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
 	CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
 	
 	const int movementDistance = keyboardFrameBeginRect.size.height; // tweak as needed
@@ -237,7 +237,7 @@
 										  encoding:NSUTF8StringEncoding];
 	NSLog(@"str = [%@]", str);
 
-	if ([Utils numberOfMatches:str regex:@"history.back"] > 0) {
+	if ([Utils numberOfMatches:str regex:@"<title>오류안내 페이지"] > 0) {
 		NSString *errmsg;
 		errmsg = [Utils findStringRegex:str regex:@"(<p class=\\\"cbg\\\">).*?(</p>)"];
 		errmsg = [Utils replaceStringHtmlTag:errmsg];
@@ -245,7 +245,6 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"글 작성 오류"
 														message:errmsg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"확인", nil];
 		[alert show];
-		
 		return false;
 	} else {
 		NSLog(@"delete comment success");

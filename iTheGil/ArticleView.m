@@ -466,7 +466,9 @@
 																preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-															  handler:^(UIAlertAction * action) {}];
+															  handler:^(UIAlertAction * action) {
+																  [[self navigationController] popViewControllerAnimated:YES];
+															  }];
 		
 		[alert addAction:defaultAction];
 		[self presentViewController:alert animated:YES completion:nil];
@@ -476,7 +478,9 @@
 																preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-															  handler:^(UIAlertAction * action) {}];
+															  handler:^(UIAlertAction * action) {
+																  [[self navigationController] popViewControllerAnimated:YES];
+															  }];
 		
 		[alert addAction:defaultAction];
 		[self presentViewController:alert animated:YES completion:nil];
